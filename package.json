@@ -13,11 +13,11 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.4.2",
+    "@xata.io/client": "0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.32.1",
     "next": "14.2.5",
     "next-auth": "5.0.0-beta.20",
-    "postgres": "3.3.0",
     "react": "^18",
     "react-dom": "^18"
   },
