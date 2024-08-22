@@ -16,13 +16,16 @@ dependencies:
     version: 16.4.5
   drizzle-orm:
     specifier: ^0.32.1
-    version: 0.32.1(@types/react@18.3.3)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9)(react@18.3.1)
+    version: 0.32.1(@types/react@18.3.3)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9)(postgres@3.4.4)(react@18.3.1)
   next:
     specifier: 14.2.5
     version: 14.2.5(react-dom@18.3.1)(react@18.3.1)
   next-auth:
     specifier: 5.0.0-beta.20
     version: 5.0.0-beta.20(next@14.2.5)(react@18.3.1)
+  postgres:
+    specifier: ^3.4.4
+    version: 3.4.4
   react:
     specifier: ^18
     version: 18.3.1
@@ -980,7 +983,7 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.32.1(@types/react@18.3.3)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9)(react@18.3.1):
+  /drizzle-orm@0.32.1(@types/react@18.3.3)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9)(postgres@3.4.4)(react@18.3.1):
     resolution: {integrity: sha512-Wq1J+lL8PzwR5K3a1FfoWsbs8powjr3pGA4+5+2ueN1VTLDNFYEolUyUWFtqy8DVRvYbL2n7sXZkgVmK9dQkng==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -1071,6 +1074,7 @@ packages:
     dependencies:
       '@types/react': 18.3.3
       '@xata.io/client': 0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4)
+      postgres: 3.4.4
       react: 18.3.1
     dev: false
 
@@ -1572,6 +1576,11 @@ packages:
       picocolors: 1.0.1
       source-map-js: 1.2.0
     dev: true
+
+  /postgres@3.4.4:
+    resolution: {integrity: sha512-IbyN+9KslkqcXa8AO9fxpk97PA4pzewvpi2B3Dwy9u4zpV32QicaEdgmF3eSQUzdRk7ttDHQejNgAEr4XoeH4A==}
+    engines: {node: '>=12'}
+    dev: false
 
   /preact-render-to-string@5.2.3(preact@10.11.3):
     resolution: {integrity: sha512-aPDxUn5o3GhWdtJtW0svRC2SS/l8D9MAgo2+AWml+BhDImb27ALf04Q2d+AHqUUOc6RdSXFIBVa2gxzgMKgtZA==}

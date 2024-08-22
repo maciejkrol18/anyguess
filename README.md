@@ -1,36 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 💡 About
+anyguess will be a web app that allows you to create your own "geoguessr" style challenges
 
-## Getting Started
+## 🏗 Architecture
+I plan to develop this app using the **Layered Architecture** pattern. I was planning to use lucia-auth for authentication, but in the process of refactoring another app (which used next-auth and xata) to use drizzle, i managed to setup a fully working auth system using next-auth, drizzle-kit and xata in this repository. Next-auth is a great library which is very quick to setup at the cost of high levels of abstraction, so I'm not sure if it's the right fit for layered architecture, but I'm going to try it out.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<!-- ## 🤔 Caveats
+Technologies that are currently being used in this app are very bleeding edge. NextAuth V5, direct xata postgres connections, drizzle integration with xata, the xata client and xata cli, are all features in beta right now. Current setup is very messy but will be improved over time as the used technologies keep improving.
+### 🖥 HTTP and TCP
+With xata and drizzle, you can connect to the database either using HTTP or TCP. If we want to store user sessions in the database, we need to use HTTP with Drizzle, because TCP connections don't support edge environments, which features like NextJS middleware run on, resulting in errors when we try to use a drizzle client setup with TCP connection to perform auth related things. Therefore, we use the HTTP connection for sessions and data fetching, and the TCP connection for drizzle-kit specific database operations (such as migration pushing and introspection). This is why we have two separate connection URLs in the `.env` file.
+### 😥 Xata SDK and Drizzle at the same time
+In `src/db/index.ts` we use the generated Xata client (which uses HTTP connection) to create a Drizzle client in order to perform operations on the database. The drizzle client is used to perform all standard database operations such as selecting, inserting etc. However, in `src/db/xata.ts` we have the function that generates the aforementioned Xata client, which will be directly used for all operations not supported by the Drizzle client, such as using the file attachments feature. The Xata team is *"already working on a next iteration of the File Attachments feature to make things work natively in SQL. Until then, you'll need to mix using Drizzle and the Xata SDK"*. This unfortunately requires us to have two schemas defined in two of those files, with both of them needing to be updated with each schema change, resulting in really messy code.  -->

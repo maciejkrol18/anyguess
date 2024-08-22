@@ -370,74 +370,6 @@ const tables = [
     ],
   },
   {
-    name: "test",
-    checkConstraints: {
-      test_xata_id_length_xata_id: {
-        name: "test_xata_id_length_xata_id",
-        columns: ["xata_id"],
-        definition: "CHECK ((length(xata_id) < 256))",
-      },
-    },
-    foreignKeys: {},
-    primaryKey: [],
-    uniqueConstraints: {
-      test__pgroll_new_xata_id_key: {
-        name: "test__pgroll_new_xata_id_key",
-        columns: ["xata_id"],
-      },
-    },
-    columns: [
-      {
-        name: "bar",
-        type: "int",
-        notNull: false,
-        unique: false,
-        defaultValue: null,
-        comment: "",
-      },
-      {
-        name: "foo",
-        type: "text",
-        notNull: false,
-        unique: false,
-        defaultValue: null,
-        comment: "",
-      },
-      {
-        name: "xata_createdat",
-        type: "datetime",
-        notNull: true,
-        unique: false,
-        defaultValue: "now()",
-        comment: "",
-      },
-      {
-        name: "xata_id",
-        type: "text",
-        notNull: true,
-        unique: true,
-        defaultValue: "('rec_'::text || (xata_private.xid())::text)",
-        comment: "",
-      },
-      {
-        name: "xata_updatedat",
-        type: "datetime",
-        notNull: true,
-        unique: false,
-        defaultValue: "now()",
-        comment: "",
-      },
-      {
-        name: "xata_version",
-        type: "int",
-        notNull: true,
-        unique: false,
-        defaultValue: "0",
-        comment: "",
-      },
-    ],
-  },
-  {
     name: "user",
     checkConstraints: {
       user_xata_id_length_xata_id: {
@@ -453,7 +385,10 @@ const tables = [
         name: "user__pgroll_new_xata_id_key",
         columns: ["xata_id"],
       },
-      user_email_unique: { name: "user_email_unique", columns: ["email"] },
+      user_email_unique: {
+        name: "user_email_unique",
+        columns: ["email"],
+      },
     },
     columns: [
       {
@@ -620,9 +555,6 @@ export type AuthenticatorRecord = Authenticator & XataRecord;
 export type Session = InferredTypes["session"];
 export type SessionRecord = Session & XataRecord;
 
-export type Test = InferredTypes["test"];
-export type TestRecord = Test & XataRecord;
-
 export type User = InferredTypes["user"];
 export type UserRecord = User & XataRecord;
 
@@ -633,7 +565,6 @@ export type DatabaseSchema = {
   account: AccountRecord;
   authenticator: AuthenticatorRecord;
   session: SessionRecord;
-  test: TestRecord;
   user: UserRecord;
   verificationToken: VerificationTokenRecord;
 };
@@ -645,7 +576,7 @@ export class XataClient extends DatabaseClient<DatabaseSchema> {
     super(
       {
         apiKey: process.env.XATA_API_KEY,
-        databaseURL: process.env.DATABASE_URL,
+        databaseURL: process.env.XATA_HTTP_URL,
         // Use deploy preview branch if available, otherwise use branch from environment
         branch:
           getDeployPreviewBranch(process.env) ??
@@ -653,7 +584,7 @@ export class XataClient extends DatabaseClient<DatabaseSchema> {
           "main",
         ...options,
       },
-      tables
+      tables,
     );
   }
 }
