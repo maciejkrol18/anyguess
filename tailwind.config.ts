@@ -8,8 +8,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        padding: "1rem",
+      },
+      colors: {
+        foreground: "hsl(240, 26%, 92%)",
+        muted: "hsl(240, 2%, 63%)",
+        background: "hsl(240, 2%, 11%)",
+        card: "hsl(240, 2%, 16%)",
+        input: "hsl(240, 2%, 18%)",
+        primary: "hsl(93, 57%, 45%)",
+        secondary: "hsl(240, 54%, 33%)",
+        accent: "hsl(95, 42%, 57%)",
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-radial":
+          "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
