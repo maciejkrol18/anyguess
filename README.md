@@ -4,11 +4,11 @@
 
 <br>
 
-  ![nextjs 14](https://img.shields.io/badge/NextJS_14-black?logo=nextdotjs)
+  ![nextjs 14](https://img.shields.io/badge/Next%2Ejs_14-black?logo=nextdotjs)
   ![threejs](https://img.shields.io/badge/Three%2Ejs-black?logo=threedotjs)
-  ![leaflet](https://img.shields.io/badge/Leaflet-black?logo=threedotjs&color=%2327591d)
+  ![leaflet](https://img.shields.io/badge/Leaflet-black?logo=leaflet&color=%2327591d)
   ![tailwind](https://img.shields.io/badge/Tailwind_CSS-turquoise?logo=tailwindcss&color=%230d6675)
-  ![postgres](https://img.shields.io/badge/PostgreSQL-white?logo=supabase&color=%23748edb)
+  ![postgres](https://img.shields.io/badge/PostgreSQL-white?logo=postgresql&color=%23293247)
   ![typescript](https://img.shields.io/badge/TypeScript-blue?logo=typescript&color=%2322548c)
   ![biome](https://img.shields.io/badge/Biome-blue?logo=biome&color=%23324c6b)
 
