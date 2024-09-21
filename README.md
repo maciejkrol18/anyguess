@@ -1,12 +1,21 @@
+<div align="center">
+
+# anyguess
+
+<br>
+
+  ![nextjs 14](https://img.shields.io/badge/NextJS_14-black?logo=nextdotjs)
+  ![threejs](https://img.shields.io/badge/Three%2Ejs-black?logo=threedotjs)
+  ![leaflet](https://img.shields.io/badge/Leaflet-black?logo=threedotjs&color=%2327591d)
+  ![tailwind](https://img.shields.io/badge/Tailwind_CSS-turquoise?logo=tailwindcss&color=%230d6675)
+  ![postgres](https://img.shields.io/badge/PostgreSQL-white?logo=supabase&color=%23748edb)
+  ![typescript](https://img.shields.io/badge/TypeScript-blue?logo=typescript&color=%2322548c)
+  ![biome](https://img.shields.io/badge/Biome-blue?logo=biome&color=%23324c6b)
+
+</div>
+
 ## 💡 About
-anyguess will be a web app that allows you to create your own "geoguessr" style challenges
+anyguess will be a web app that allows you to create your own "geoguessr" style challenges with custom maps and landmarks from video games, for example
 
-## 🏗 Architecture
-I plan to develop this app using the **Layered Architecture** pattern. I was planning to use lucia-auth for authentication, but in the process of refactoring another app (which used next-auth and xata) to use drizzle, i managed to setup a fully working auth system using next-auth, drizzle-kit and xata in this repository. Next-auth is a great library which is very quick to setup at the cost of high levels of abstraction, so I'm not sure if it's the right fit for layered architecture, but I'm going to try it out.
-
-<!-- ## 🤔 Caveats
-Technologies that are currently being used in this app are very bleeding edge. NextAuth V5, direct xata postgres connections, drizzle integration with xata, the xata client and xata cli, are all features in beta right now. Current setup is very messy but will be improved over time as the used technologies keep improving.
-### 🖥 HTTP and TCP
-With xata and drizzle, you can connect to the database either using HTTP or TCP. If we want to store user sessions in the database, we need to use HTTP with Drizzle, because TCP connections don't support edge environments, which features like NextJS middleware run on, resulting in errors when we try to use a drizzle client setup with TCP connection to perform auth related things. Therefore, we use the HTTP connection for sessions and data fetching, and the TCP connection for drizzle-kit specific database operations (such as migration pushing and introspection). This is why we have two separate connection URLs in the `.env` file.
-### 😥 Xata SDK and Drizzle at the same time
-In `src/db/index.ts` we use the generated Xata client (which uses HTTP connection) to create a Drizzle client in order to perform operations on the database. The drizzle client is used to perform all standard database operations such as selecting, inserting etc. However, in `src/db/xata.ts` we have the function that generates the aforementioned Xata client, which will be directly used for all operations not supported by the Drizzle client, such as using the file attachments feature. The Xata team is *"already working on a next iteration of the File Attachments feature to make things work natively in SQL. Until then, you'll need to mix using Drizzle and the Xata SDK"*. This unfortunately requires us to have two schemas defined in two of those files, with both of them needing to be updated with each schema change, resulting in really messy code.  -->
+## 👷‍♂️ Architecture
+I plan to develop this app using the **Layered Architecture** pattern. I was planning to use lucia-auth for authentication, but in the process of refactoring another app (which used next-auth and xata) to use drizzle, i managed to setup a fully working auth system using next-auth, drizzle-kit and xata in this repository (though ultimately i ditched xata). Next-auth is a great library which is very quick to setup at the cost of high levels of abstraction, so I'm not sure if it's the right fit for layered architecture, but I'm going to try it out.

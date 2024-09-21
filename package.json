@@ -9,12 +9,12 @@
     "lint": "biome check ./src",
     "migrations:generate": "drizzle-kit generate --config=drizzle.config.ts",
     "db:push": "drizzle-kit push --config=drizzle.config.ts",
+    "db:introspect": "drizzle-kit introspect",
     "studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.4.2",
     "@radix-ui/react-slot": "^1.1.0",
-    "@xata.io/client": "0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
@@ -22,7 +22,7 @@
     "lucide-react": "^0.436.0",
     "next": "14.2.5",
     "next-auth": "5.0.0-beta.20",
-    "postgres": "^3.4.4",
+    "pg": "^8.13.0",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2",
@@ -31,6 +31,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@types/node": "^20",
+    "@types/pg": "^8.11.10",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "drizzle-kit": "^0.23.0",

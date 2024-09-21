@@ -6,39 +6,80 @@ import {
   timestamp,
   primaryKey,
   boolean,
+  doublePrecision,
+  uuid,
 } from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm";
+
+export const challenges = pgTable(
+  "challenges",
+  {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    created_at: timestamp("created_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    updated_at: timestamp("updated_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    title: text("title").notNull(),
+    tags: text("tags").array(),
+    map_image: text("map_image").notNull(),
+    is_public: boolean("is_public").default(true),
+  },
+  (table) => {
+    return {
+      challenges_title_unique: unique("challenges_title_unique").on(
+        table.title,
+      ),
+    };
+  },
+);
+
+export const landmarks = pgTable(
+  "landmarks",
+  {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    created_at: timestamp("created_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    updated_at: timestamp("updated_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+    title: text("title").notNull(),
+    type: integer("type").default(0).notNull(),
+    lat: doublePrecision("lat").notNull(),
+    lng: doublePrecision("lng").notNull(),
+    image: text("image").notNull(),
+  },
+  (table) => {
+    return {
+      landmarks_title_unique: unique("landmarks_title_unique").on(
+        table.title,
+      ),
+    };
+  },
+);
 
 export const session = pgTable(
   "session",
   {
-    sessionToken: text("sessionToken").primaryKey().notNull(),
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
+    sessionToken: text("sessionToken").notNull(),
     userId: text("userId")
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
     expires: timestamp("expires", { mode: "string" }).notNull(),
-    xata_updatedat: timestamp("xata_updatedat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    created_at: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
-    xata_id: text("xata_id")
-      .default(sql`'rec_'::text || (xata_private.xid())::text`)
-      .notNull(),
-    xata_version: integer("xata_version").default(0).notNull(),
-    xata_createdat: timestamp("xata_createdat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    updated_at: timestamp("updated_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
   },
   (table) => {
     return {
-      session__pgroll_new_xata_id_key: unique(
-        "session__pgroll_new_xata_id_key",
-      ).on(table.xata_id),
+      session_token_unique: unique("session_token_unique").on(
+        table.sessionToken,
+      ),
     };
   },
 );
@@ -51,28 +92,15 @@ export const user = pgTable(
     email: text("email"),
     emailVerified: timestamp("emailVerified", { mode: "string" }),
     image: text("image"),
-    xata_updatedat: timestamp("xata_updatedat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    created_at: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
-    xata_id: text("xata_id")
-      .default(sql`'rec_'::text || (xata_private.xid())::text`)
-      .notNull(),
-    xata_version: integer("xata_version").default(0).notNull(),
-    xata_createdat: timestamp("xata_createdat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    updated_at: timestamp("updated_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
   },
   (table) => {
     return {
-      user__pgroll_new_xata_id_key: unique(
-        "user__pgroll_new_xata_id_key",
-      ).on(table.xata_id),
       user_email_unique: unique("user_email_unique").on(table.email),
     };
   },
@@ -84,20 +112,10 @@ export const verificationToken = pgTable(
     identifier: text("identifier").notNull(),
     token: text("token").notNull(),
     expires: timestamp("expires", { mode: "string" }).notNull(),
-    xata_updatedat: timestamp("xata_updatedat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    created_at: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
-    xata_id: text("xata_id")
-      .default(sql`'rec_'::text || (xata_private.xid())::text`)
-      .notNull(),
-    xata_version: integer("xata_version").default(0).notNull(),
-    xata_createdat: timestamp("xata_createdat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    updated_at: timestamp("updated_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
   },
@@ -107,9 +125,6 @@ export const verificationToken = pgTable(
         columns: [table.identifier, table.token],
         name: "verificationToken_identifier_token_pk",
       }),
-      verificationToken__pgroll_new_xata_id_key: unique(
-        "verificationToken__pgroll_new_xata_id_key",
-      ).on(table.xata_id),
     };
   },
 );
@@ -117,6 +132,7 @@ export const verificationToken = pgTable(
 export const authenticator = pgTable(
   "authenticator",
   {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
     credentialID: text("credentialID").notNull(),
     userId: text("userId")
       .notNull()
@@ -127,32 +143,15 @@ export const authenticator = pgTable(
     credentialDeviceType: text("credentialDeviceType").notNull(),
     credentialBackedUp: boolean("credentialBackedUp").notNull(),
     transports: text("transports"),
-    xata_updatedat: timestamp("xata_updatedat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    created_at: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
-    xata_id: text("xata_id")
-      .default(sql`'rec_'::text || (xata_private.xid())::text`)
-      .notNull(),
-    xata_version: integer("xata_version").default(0).notNull(),
-    xata_createdat: timestamp("xata_createdat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    updated_at: timestamp("updated_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
   },
   (table) => {
     return {
-      authenticator_userId_credentialID_pk: primaryKey({
-        columns: [table.credentialID, table.userId],
-        name: "authenticator_userId_credentialID_pk",
-      }),
-      authenticator__pgroll_new_xata_id_key: unique(
-        "authenticator__pgroll_new_xata_id_key",
-      ).on(table.xata_id),
       authenticator_credentialID_unique: unique(
         "authenticator_credentialID_unique",
       ).on(table.credentialID),
@@ -163,6 +162,7 @@ export const authenticator = pgTable(
 export const account = pgTable(
   "account",
   {
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
     userId: text("userId")
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
@@ -176,32 +176,18 @@ export const account = pgTable(
     scope: text("scope"),
     id_token: text("id_token"),
     session_state: text("session_state"),
-    xata_updatedat: timestamp("xata_updatedat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    created_at: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
-    xata_id: text("xata_id")
-      .default(sql`'rec_'::text || (xata_private.xid())::text`)
-      .notNull(),
-    xata_version: integer("xata_version").default(0).notNull(),
-    xata_createdat: timestamp("xata_createdat", {
-      withTimezone: true,
-      mode: "string",
-    })
+    updated_at: timestamp("updated_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
   },
   (table) => {
     return {
-      account_provider_providerAccountId_pk: primaryKey({
-        columns: [table.provider, table.providerAccountId],
-        name: "account_provider_providerAccountId_pk",
-      }),
-      account__pgroll_new_xata_id_key: unique(
-        "account__pgroll_new_xata_id_key",
-      ).on(table.xata_id),
+      account_provider_providerAccountId_unique: unique(
+        "account_provider_providerAccountId_unique",
+      ).on(table.provider, table.providerAccountId),
     };
   },
 );
