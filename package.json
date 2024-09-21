@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "pnpm run migrations:run && pnpm run next start",
+    "next:start": "next start",
+    "start": "pnpm run migrations:run && pnpm run next:start",
     "lint": "biome check ./src",
     "migrations:generate": "drizzle-kit generate --config=drizzle.config.ts",
     "migrations:run": "drizzle-kit migrate --config=drizzle.config.ts",
