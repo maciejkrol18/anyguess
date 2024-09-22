@@ -16,12 +16,15 @@ const config: Config = {
         muted: "hsl(240, 2%, 63%)",
         background: "hsl(240, 2%, 11%)",
         card: "hsl(240, 2%, 16%)",
+        border: "hsl(240, 2%, 25%)",
         input: "hsl(240, 2%, 18%)",
         primary: "hsl(93, 57%, 45%)",
         secondary: "hsl(240, 54%, 33%)",
         accent: "hsl(95, 42%, 57%)",
       },
       backgroundImage: {
+        "gradient-play-button":
+          "linear-gradient(to right, #57CF47, #8EC987)",
         "gradient-radial":
           "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

@@ -8,6 +8,13 @@
       "when": 1726931963031,
       "tag": "0000_little_quasar",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1727015866752,
+      "tag": "0001_lucky_typhoid_mary",
+      "breakpoints": true
     }
   ]
 }

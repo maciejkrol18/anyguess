@@ -11,6 +11,7 @@ export default defineConfig({
   dbCredentials: {
     url: process.env.DATABASE_URL as string,
   },
+  out: "./drizzle",
   verbose: true,
   strict: true,
 });
