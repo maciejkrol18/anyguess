@@ -22,7 +22,7 @@ export default async function Home() {
             </Button>
             <Button variant="secondary" asChild>
               <Link href="/browse">
-                <Compass /> Browse challenges
+                <Compass /> Browse maps
               </Link>
             </Button>
           </div>
