@@ -11,6 +11,7 @@ const buttonVariants = cva(
         default: "bg-card",
         primary: "bg-primary text-background",
         secondary: "bg-accent text-background",
+        play: "gradient-play-button justify-start",
       },
       size: {
         default: "h-10 px-4",

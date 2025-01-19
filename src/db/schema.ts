@@ -20,6 +20,9 @@ export const challenges = pgTable(
     updated_at: timestamp("updated_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
+    author: text("author").references(() => user.id, {
+      onDelete: "cascade",
+    }),
     title: text("title").notNull(),
     tags: text("tags").array(),
     map_image: text("map_image").notNull(),
