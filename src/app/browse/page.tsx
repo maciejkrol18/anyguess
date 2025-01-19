@@ -1,7 +1,7 @@
+import { searchChallenges } from "@/data-access/challenges";
 import SearchBar from "./search-bar";
 import SearchResult from "./search-result";
-import { searchChallengesUseCase } from "@/use-cases/challenges";
-import type { ChallengeSearchFilters } from "@/use-cases/types";
+import type { ChallengeSearchFilters } from "@/types/challenge-filters";
 
 interface BrowsePageProps {
   searchParams: ChallengeSearchFilters;
@@ -10,12 +10,13 @@ interface BrowsePageProps {
 export default async function BrowsePage({
   searchParams,
 }: BrowsePageProps) {
-  const data = await searchChallengesUseCase({
+  const data = await searchChallenges({
     q: searchParams.q,
     author: searchParams.author,
     tags: searchParams.tags,
     page: searchParams.page,
   });
+
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-5xl font-medium">Browse maps</h1>

@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { challenges } from "@/db/schema";
-import type { ChallengeSearchFilters } from "@/use-cases/types";
+import type { ChallengeSearchFilters } from "@/types/challenge-filters";
 import { and, eq, ilike, arrayContains, desc } from "drizzle-orm";
 
 export async function searchChallenges({

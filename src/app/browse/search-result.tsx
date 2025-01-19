@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
-import type { challenges, user } from "@/db/schema";
-import type { searchChallengesUseCase } from "@/use-cases/challenges";
+import type { searchChallenges } from "@/data-access/challenges";
 import { CalendarClock, Play, Tags, UserCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface SearchResultProps {
-  data: Awaited<ReturnType<typeof searchChallengesUseCase>>[number];
+  data: Awaited<ReturnType<typeof searchChallenges>>[number];
 }
 
 const getUserImage = (user: SearchResultProps["data"]["user"]) => {

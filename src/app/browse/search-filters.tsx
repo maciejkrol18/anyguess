@@ -7,7 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { ChallengeSearchFilters } from "@/use-cases/types";
+import type { ChallengeSearchFilters } from "@/types/challenge-filters";
 import { SlidersHorizontal } from "lucide-react";
 import {
   usePathname,
