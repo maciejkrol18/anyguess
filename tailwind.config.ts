@@ -22,6 +22,10 @@ const config: Config = {
         secondary: "hsl(240, 54%, 33%)",
         accent: "hsl(95, 42%, 57%)",
       },
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+        heading: ["var(--font-heading)"],
+      },
       backgroundImage: {
         "gradient-play-button":
           "linear-gradient(to right, #57CF47, #8EC987)",
